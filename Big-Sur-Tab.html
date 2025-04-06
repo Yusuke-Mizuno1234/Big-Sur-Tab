@@ -1,136 +1,74 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Big Sur New Tab</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Big Sur Tab</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    :root {
-      --bg-color-light: #f5f5f7;
-      --bg-color-dark: #1e1e1e;
-      --bar-height: 56px;
-      --radius: 12px;
-      --logo-url: url('https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg');
+    * {
+      margin: 0;
+      padding: 0;
+      font-family: 'Noto Sans JP', sans-serif;
+      box-sizing: border-box;
     }
 
     body {
-      margin: 0;
-      padding: 0;
-      font-family: "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: var(--bg-color-light);
-      color: #1e1e1e;
-    }
-
-    #fake-tab-bar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: var(--bar-height);
-      background-color: var(--bg-color-light);
+      height: 100vh;
+      background: linear-gradient(135deg, #dbeaff, #f4d2ff);
+      color: #fff;
       display: flex;
+      flex-direction: column;
+      justify-content: center;
       align-items: center;
-      justify-content: space-between;
-      box-shadow: 0 1px 5px rgba(0,0,0,0.1);
-      padding: 0 12px;
-      z-index: 9999;
+      text-align: center;
     }
 
-    #fake-tab-bar::before {
-      content: '';
-      display: inline-block;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: #ff5f57;
-      margin-right: 8px;
-      box-shadow:
-        20px 0 0 #ffbd2e,
-        40px 0 0 #28c840;
+    h1 {
+      font-size: 5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
     }
 
-    .fake-search-bar {
-      position: relative;
-      top: calc(var(--bar-height) + 40px);
-      width: 600px;
-      margin: 0 auto;
-    }
-
-    .fake-search-bar input {
-      width: 100%;
-      padding: 12px 20px;
-      border-radius: var(--radius);
-      border: none;
-      font-size: 16px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    }
-
-    .fake-bookmark-icons {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .fake-bookmark-icons::before {
-      content: "☆";
-      font-size: 18px;
-      color: #555;
-    }
-
-    .fake-bookmark-icons::after {
-      content: "";
-      display: inline-block;
-      width: 18px;
-      height: 18px;
-      background-image: var(--logo-url);
-      background-size: contain;
-      background-repeat: no-repeat;
+    p {
+      font-size: 1.5rem;
       opacity: 0.85;
     }
 
-    #main-content {
-      margin-top: var(--bar-height);
-      text-align: center;
-      padding-top: 60px;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      body {
-        background: var(--bg-color-dark);
-        color: #fff;
-      }
-
-      #fake-tab-bar {
-        background-color: var(--bg-color-dark);
-      }
-
-      .fake-search-bar input {
-        background: #2c2c2e;
-        color: #fff;
-      }
-
-      .fake-bookmark-icons::after {
-        filter: invert(1);
-      }
-
-      .fake-bookmark-icons::before {
-        color: #ccc;
-      }
+    .apple-logo {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 32px;
+      height: 32px;
+      fill: white;
+      opacity: 0.9;
     }
   </style>
 </head>
 <body>
-  <div id="fake-tab-bar">
-    <div class="left"></div>
-    <div class="right fake-bookmark-icons"></div>
-  </div>
+  <svg class="apple-logo" viewBox="0 0 24 24">
+    <path d="M16.365 1.43c0 1.14-.424 2.084-1.272 2.832-.847.75-1.742 1.195-2.686 1.336-.1-.395-.15-.801-.15-1.219 0-1.1.389-2.02 1.164-2.758.776-.739 1.66-1.122 2.652-1.148.01.318.043.63.092.957zM20.5 16.852c-.15.384-.393.854-.727 1.41-.35.584-.715 1.066-1.098 1.445-.428.42-.87.799-1.328 1.137-.432.31-.89.465-1.371.465-.355 0-.792-.104-1.313-.313-.52-.208-.997-.313-1.43-.313-.455 0-.94.104-1.453.313-.514.209-.933.313-1.258.313-.512 0-.983-.155-1.414-.465a5.33 5.33 0 01-1.336-1.14 9.843 9.843 0 01-1.125-1.453c-.308-.483-.574-1.031-.797-1.64-.253-.664-.38-1.28-.38-1.852 0-1.037.238-1.922.715-2.653.477-.732 1.086-1.285 1.828-1.66.741-.376 1.512-.563 2.313-.563.396 0 .92.13 1.574.391.652.262 1.078.391 1.273.391.156 0 .634-.149 1.434-.445.77-.276 1.42-.392 1.945-.351 1.434.116 2.508.67 3.223 1.66-1.273.77-1.906 1.851-1.898 3.243.008 1.006.298 1.87.867 2.594z"/>
+  </svg>
+  <h1 id="time">--:--</h1>
+  <p id="date">--/--/----</p>
 
-  <div class="fake-search-bar">
-    <input type="text" placeholder="Search or enter address">
-  </div>
-
-  <div id="main-content">
-    <h2>Welcome to Big Sur Style New Tab</h2>
-  </div>
+  <script>
+    function updateTime() {
+      const now = new Date();
+      const time = now.toLocaleTimeString('ja-JP', { hour: '2-digit', minute: '2-digit' });
+      const date = now.toLocaleDateString('ja-JP', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        weekday: 'short'
+      });
+      document.getElementById('time').textContent = time;
+      document.getElementById('date').textContent = date;
+    }
+    setInterval(updateTime, 1000);
+    updateTime();
+  </script>
 </body>
 </html>
