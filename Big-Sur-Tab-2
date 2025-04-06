@@ -1,0 +1,59 @@
+/* Chromeタイトルバー全体のカスタマイズ */
+header#browser {
+  background: transparent !important;
+  backdrop-filter: blur(10px) !important;
+  height: 32px !important;
+}
+
+/* Windowsボタン（最小化・最大化・閉じる）のスタイル */
+.window-buttons {
+  position: absolute !important;
+  right: 0 !important;
+  top: 0 !important;
+  height: 32px !important;
+  -webkit-app-region: no-drag !important;
+}
+
+.window-buttons .button {
+  width: 46px !important;
+  height: 32px !important;
+  background: transparent !important;
+  border: none !important;
+  color: #000 !important;
+  transition: all 0.2s !important;
+}
+
+/* ボタンホバー時のエフェクト */
+.window-buttons .button:hover {
+  background: rgba(0, 0, 0, 0.1) !important;
+}
+
+.window-buttons .close:hover {
+  background: #e81123 !important;
+  color: white !important;
+}
+
+/* ボタンアイコンをSVGで再現 */
+.window-buttons .minimize::after {
+  content: "";
+  display: block;
+  width: 12px;
+  height: 2px;
+  background: currentColor;
+  margin: auto;
+}
+
+.window-buttons .maximize::after {
+  content: "";
+  display: block;
+  width: 10px;
+  height: 10px;
+  border: 2px solid currentColor;
+  margin: auto;
+}
+
+.window-buttons .close::after {
+  content: "╳";
+  font-size: 12px;
+  line-height: 32px;
+}
